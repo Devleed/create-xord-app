@@ -53,22 +53,25 @@ const updatePackageJson = () => {
     console.log(chalk.yellow(`dependencies installed successfully!`));
     console.log(chalk.bgGreen(`project created, enjoy!`));
   } catch (error) {
-    if (
-      String(error.stderr || '')?.includes(
-        'already exists and is not an empty directory.',
-      )
-    ) {
-      console.log(
-        chalk.red(
-          `Folder ${folderName} already exists, try deleting the folder or renaming your project.`,
-        ),
-      );
-    } else if (String(error.stderr).includes('npm ERR')) {
-      console.log(
-        chalk.red(
-          `Error occurred while installing dependencies. Please check package.json file inside ${folderName} folder.`,
-        ),
-      );
+    console.error(error);
+    if (error.stderr) {
+      if (
+        String(error.stderr || '')?.includes(
+          'already exists and is not an empty directory.',
+        )
+      ) {
+        console.log(
+          chalk.red(
+            `Folder ${folderName} already exists, try deleting the folder or renaming your project.`,
+          ),
+        );
+      } else if (String(error.stderr).includes('npm ERR')) {
+        console.log(
+          chalk.red(
+            `Error occurred while installing dependencies. Please check package.json file inside ${folderName} folder.`,
+          ),
+        );
+      }
     }
   }
 })();
