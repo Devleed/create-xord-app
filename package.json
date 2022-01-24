@@ -1,13 +1,17 @@
 {
   "name": "@xord/create-react-app",
+  "author": "Muhammad Waleed <waleed@xord.com> (https://github.com/devleed)",
   "version": "1.0.0",
-  "description": "",
+  "description": "A package which automates the creation of react app.",
   "main": "bin/index.js",
-  "descreption": "A package which automates the creation of react app.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Devleed/create-xord-app.git"
+  },
+  "homepage": "https://github.com/Devleed/create-xord-app",
   "bin": {
     "create-xord-app": "./bin/index.js"
   },
-  "author": "Devleed",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
