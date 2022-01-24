@@ -20,13 +20,15 @@ const updatePackageJson = () => {
 
   const newPackageJsonContent = packageJsonContent.replace(
     /xord-app/g,
-    folderName,
+    folderName.toLowerCase(),
   );
 
   fs.writeFileSync(`${folderName}/package.json`, newPackageJsonContent, err =>
     console.error(err),
   );
 };
+
+let installDependenciesLoader;
 
 (async () => {
   try {
@@ -42,36 +44,36 @@ const updatePackageJson = () => {
 
     // * install dependencies
     // ? -- run loader
-    const load = loading('Installing Dependencies').start();
-    load.color = 'yellow';
+    installDependenciesLoader = loading('Installing Dependencies').start();
+    installDependenciesLoader.color = 'yellow';
 
     await executeCommand(`cd ${folderName} && npm install`);
 
     // ? -- stop loader
-    load.stop();
+    installDependenciesLoader.stop();
 
     console.log(chalk.yellow(`dependencies installed successfully!`));
     console.log(chalk.bgGreen(`project created, enjoy!`));
   } catch (error) {
-    console.error('hell -', error);
-    if (error.stderr) {
-      if (
-        String(error.stderr || '').includes(
-          'already exists and is not an empty directory.',
-        )
-      ) {
-        console.log(
-          chalk.red(
-            `Folder ${folderName} already exists, try deleting the folder or renaming your project.`,
-          ),
-        );
-      } else if (String(error.stderr).includes('npm ERR')) {
-        console.log(
-          chalk.red(
-            `Error occurred while installing dependencies. Please check package.json file inside ${folderName} folder.`,
-          ),
-        );
-      }
+    installDependenciesLoader.stop();
+    if (
+      String(error.stderr || '').includes(
+        'already exists and is not an empty directory.',
+      )
+    ) {
+      console.log(
+        chalk.red(
+          `Folder ${folderName} already exists, try deleting the folder or renaming your project.`,
+        ),
+      );
+    } else if (String(error.stderr || '').includes('npm ERR')) {
+      console.log(
+        chalk.red(
+          `Error occurred while installing dependencies. Please check package.json file inside ${folderName} folder.`,
+        ),
+      );
+    } else {
+      console.log(chalk.red(`An error occurred while creating project.`));
     }
   }
 })();
