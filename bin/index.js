@@ -34,7 +34,7 @@ let installDependenciesLoader;
   try {
     console.log(chalk.bgGreen(`creating xord react app in ${folderName}`));
 
-    // // * clone the repo
+    // * clone the repo
     await executeCommand(
       `cd ${process.cwd()} && git clone https://github.com/XORD-one/Best-Coding-Practices-Boilerplate.git ${folderName}`,
     );
