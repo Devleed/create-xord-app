@@ -1,7 +1,7 @@
 {
   "name": "@xord/create-react-app",
   "author": "Muhammad Waleed <waleed@xord.com> (https://github.com/devleed)",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A package which automates the creation of react app.",
   "main": "bin/index.js",
   "repository": {
