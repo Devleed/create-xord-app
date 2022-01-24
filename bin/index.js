@@ -32,7 +32,7 @@ const updatePackageJson = () => {
   try {
     console.log(chalk.bgGreen(`creating xord react app in ${folderName}`));
 
-    // * clone the repo
+    // // * clone the repo
     await executeCommand(
       `cd ${process.cwd()} && git clone https://github.com/XORD-one/Best-Coding-Practices-Boilerplate.git ${folderName}`,
     );
@@ -53,10 +53,10 @@ const updatePackageJson = () => {
     console.log(chalk.yellow(`dependencies installed successfully!`));
     console.log(chalk.bgGreen(`project created, enjoy!`));
   } catch (error) {
-    console.error(error);
+    console.error('hell -', error);
     if (error.stderr) {
       if (
-        String(error.stderr || '')?.includes(
+        String(error.stderr || '').includes(
           'already exists and is not an empty directory.',
         )
       ) {
