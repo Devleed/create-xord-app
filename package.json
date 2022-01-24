@@ -1,7 +1,7 @@
 {
   "name": "create-xord-app",
   "author": "Muhammad Waleed <waleed@xord.com> (https://github.com/devleed)",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "A package which automates the creation of react app.",
   "main": "bin/index.js",
   "repository": {
