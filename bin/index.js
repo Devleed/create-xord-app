@@ -47,7 +47,7 @@ let installDependenciesLoader;
     installDependenciesLoader = loading('Installing Dependencies').start();
     installDependenciesLoader.color = 'yellow';
 
-    await executeCommand(`cd ${folderName} && npm install`);
+    await executeCommand(`cd ${folderName} && npm install --force`);
 
     // ? -- stop loader
     installDependenciesLoader.stop();
